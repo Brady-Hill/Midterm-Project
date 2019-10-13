@@ -28,7 +28,6 @@ public class WeaponChoiceButtonBehaviour : MonoBehaviour
         for (int i = 0; i < buttons.Length; i++)
         {
             buttons[i].GetComponent<Image>().color = new Color(0,0,0,0);
-            buttons[i].GetComponentInChildren<Text>().enabled = false;
         }
     }
 }
