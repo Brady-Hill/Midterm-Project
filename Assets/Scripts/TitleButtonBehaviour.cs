@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 public class TitleButtonBehaviour : MonoBehaviour
 {
-    public void goToMenu()
+    public GameObject canvas;
+    public void LoginCanvas()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("MainMenu");
+        canvas.active = true;
     }
+   
 }
