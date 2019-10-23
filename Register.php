@@ -29,8 +29,8 @@
     //else 
     //{
     //Insert User info into Database
-	$sql = "INSERT INTO logininfo (Name, Password) VALUES 
-            ('$username','$password')";
+	$sql = "INSERT INTO logininfo (Name, Password, Wins, Losses) VALUES 
+            ('".$username."','".$password."','0','0')";
 	$result = mysqli_query($conn, $sql);
 	$conn->close();
 ?>

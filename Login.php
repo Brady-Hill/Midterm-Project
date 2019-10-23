@@ -28,7 +28,7 @@
 		{
 			if($row["Password"] == $password)
 			{
-				echo "Success";
+				echo $row["Wins"]."|".$row["Losses"];
 			}
 			else
 				echo "Password";
