@@ -27,7 +27,6 @@ public class Web : MonoBehaviour
             }
             else
             {
-                Debug.Log(www.downloadHandler.text);
                 if (www.downloadHandler.text.Contains("Password") || www.downloadHandler.text.Contains("Username"))
                 {
                     StartCoroutine(LoginError());
@@ -58,7 +57,6 @@ public class Web : MonoBehaviour
             }
             else
             {
-                Debug.Log(www.downloadHandler.text);
                 if (www.downloadHandler.text.Contains("Username"))
                 {
                     StartCoroutine(LoginError());
