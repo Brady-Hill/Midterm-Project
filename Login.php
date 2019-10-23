@@ -18,7 +18,7 @@
 	die("Connection Failure". mysqli_connect_error());
 	}
 
-	$sql = "SELECT Password FROM logininfo WHERE Name = '" .$username."' ";
+	$sql = "SELECT Password, Wins, Losses FROM logininfo WHERE Name = '" .$username."' ";
 
 	$result = mysqli_query($conn,$sql);
 
@@ -28,7 +28,8 @@
 		{
 			if($row["Password"] == $password)
 			{
-				echo $row["Wins"]."|".$row["Losses"];
+                $records = $row["Wins"].'|'.$row["Losses"];
+				echo $records;
 			}
 			else
 				echo "Password";
