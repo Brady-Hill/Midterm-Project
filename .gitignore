@@ -108,3 +108,14 @@ crashlytics-build.properties
 
 /Assets/BayatGames.meta
 /Assets/BayatGames
+/Assets/Animations/*.anim
+/Assets/Animations/*.meta
+/Assets/Animations/*.controller
+/Assets/*.meta
+/Assets/Palettes/*.prefab
+/Assets/Palettes/*.meta
+/Assets/Tiles/*.asset
+/Assets/Tiles/*.meta
+/Assets/Sprites/*.png
+/Assets/Sprites/*.meta
+/Assets/Scripts/*.meta
