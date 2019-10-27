@@ -7,7 +7,7 @@ public class TitleButtonBehaviour : MonoBehaviour
     public GameObject canvas;
     public void LoginCanvas()
     {
-        canvas.active = true;
+        canvas.SetActive(true);
     }
    
 }

@@ -8,6 +8,15 @@ public class UserInfo : MonoBehaviour
     string userName, userPass;
     int wins, losses;
 
+    public string GetName()
+    { return userName; }
+    public string GetPass()
+    { return userPass; }
+    public int GetWins()
+    { return wins; }
+    public int GetLosses()
+    { return losses; }
+
     public void setUser(string name, string password)
     {
         userName = name;
@@ -25,20 +34,6 @@ public class UserInfo : MonoBehaviour
         string[] tmp = record.Split('|');
         wins = Int32.Parse(tmp[0]);
         losses = Int32.Parse(tmp[1]);
-        
+
     }
-    public void updateRecord(string condition)
-    {
-        if (condition == "Win")
-        {
-            wins++;
-        }
-        else if (condition == "Loss")
-        {
-            losses++;
-        }
-        else
-            return;
-    }
-    
 }

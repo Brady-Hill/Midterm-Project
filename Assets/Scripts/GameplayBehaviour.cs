@@ -22,7 +22,13 @@ public class GameplayBehaviour : MonoBehaviour
 
     //Strings for conditions, choices and for the UI to display
     private string playerPick, compPick, condition;
-    private int round = 1, playerWon = 0, compWon = 0;
+    private int playerWon = 0, compWon = 0;
+
+    private string user = Main.Instance.newUser.GetName();
+    private string pass = Main.Instance.newUser.GetPass();
+    private int userWins = 0;
+    private int userLosses = 0;
+
 
     //Methods for each weapon choice
     public void paper() { userWeapon = Weapons.PAPER; playerPick = "Paper"; }
@@ -105,9 +111,14 @@ public class GameplayBehaviour : MonoBehaviour
             newText.text = "You Chose " + playerPick + ',' + '\n' + "Evil Chose " + compPick + ',' + '\n' + "You " + condition + " " + playerWon + " to " + compWon;
             gameOverScreen.SetActive(true);
             if (playerWon >= 2)
-                Main.Instance.newUser.updateRecord("Win");
+            {
+                userWins++;
+            }
             else
-                Main.Instance.newUser.updateRecord("Loss");
+            {
+                userLosses++;
+            }
+            StartCoroutine(Main.Instance.web.updateRecord(user, pass, userWins, userLosses));
         }
         else
         {
