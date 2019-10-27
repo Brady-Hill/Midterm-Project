@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 public class WeaponChoiceButtonBehaviour : MonoBehaviour
 {
-    public Button[] buttons;
+    public GameObject gameCanvas, nextRoundCanvas;
     public void paperChoice()
     {
         FindObjectOfType<GameplayBehaviour>().paper();
@@ -25,9 +25,11 @@ public class WeaponChoiceButtonBehaviour : MonoBehaviour
     }
     private void clearScreen()
     {
-        for (int i = 0; i < buttons.Length; i++)
-        {
-            buttons[i].GetComponent<Image>().color = new Color(0,0,0,0);
-        }
+        gameCanvas.SetActive(false);
+    }
+    public void resetScreen()
+    {
+        nextRoundCanvas.SetActive(false);
+        gameCanvas.SetActive(true);
     }
 }

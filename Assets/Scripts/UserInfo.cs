@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class UserInfo : MonoBehaviour
 {
-    string userName, userPass, wins, losses;
+    string userName, userPass;
+    int wins, losses;
+
     public void setUser(string name, string password)
     {
         userName = name;
@@ -14,12 +17,28 @@ public class UserInfo : MonoBehaviour
     {
         userName = name;
         userPass = password;
-        wins = _wins.ToString();
-        losses = _losses.ToString();
+        wins = _wins;
+        losses = _losses;
     }
     public void setRecord(string record)
     {
         string[] tmp = record.Split('|');
-        wins = tmp[0]; losses = tmp[1];
+        wins = Int32.Parse(tmp[0]);
+        losses = Int32.Parse(tmp[1]);
+        
     }
+    public void updateRecord(string condition)
+    {
+        if (condition == "Win")
+        {
+            wins++;
+        }
+        else if (condition == "Loss")
+        {
+            losses++;
+        }
+        else
+            return;
+    }
+    
 }

@@ -6,32 +6,23 @@ using UnityEngine.UI;
 public class GameplayBehaviour : MonoBehaviour
 {
     [SerializeField]
-    private GameObject gameOverScreen;
+    private GameObject gameOverScreen, nextRoundScreen;
 
     //Weapon Choices like Paper Rock and Scissors
     private enum Weapons
     {
         PAPER,
         ROCK,
-        SCISSORS
-    }
-
-    //Win Conditions such as Win Lose or in the event that the player and the computer pick the same choice... Draw
-    private enum Conditions
-    {
-        WIN,
-        LOSE,
-        DRAW
+        SCISSORS,
+        EMPTY
     }
 
     //Variables to store the Player and AI Choice
     private Weapons userWeapon, compWeapon;
 
-    //Variable to Store the Game Outcome
-    private Conditions gameConditions;
-
-    //Strings for the UI to display after each game
+    //Strings for conditions, choices and for the UI to display
     private string playerPick, compPick, condition;
+    private int round = 1, playerWon = 0, compWon = 0;
 
     //Methods for each weapon choice
     public void paper() { userWeapon = Weapons.PAPER; playerPick = "Paper"; }
@@ -39,7 +30,7 @@ public class GameplayBehaviour : MonoBehaviour
     public void scissors() { userWeapon = Weapons.SCISSORS; playerPick = "Scissors"; }
 
     //Method for Computer Weapon Selection
-    private void computerWeapon()
+    IEnumerator computerWeapon()
     {
         int temp = Random.Range(0, 3);
         switch (temp)
@@ -54,6 +45,7 @@ public class GameplayBehaviour : MonoBehaviour
                 compWeapon = Weapons.SCISSORS; compPick = "Scissors";
                 break;
         }
+        yield return new WaitForSeconds(1.5f);
     }
 
     //Method to compare the User selection with the Computer selection and determine the game outcome
@@ -61,46 +53,45 @@ public class GameplayBehaviour : MonoBehaviour
     {
         if (userWeapon == compWeapon)
         {
-            gameConditions = Conditions.DRAW;
             condition = "Tie";
         }
         else if (userWeapon == Weapons.PAPER)
         {
             if (compWeapon == Weapons.SCISSORS)
             {
-                gameConditions = Conditions.LOSE;
                 condition = "Lose";
+                compWon++;
             }
             else
             {
-                gameConditions = Conditions.WIN;
                 condition = "Win";
+                playerWon++;
             }
         }
         else if (userWeapon == Weapons.ROCK)
         {
             if (compWeapon == Weapons.PAPER)
             {
-                gameConditions = Conditions.LOSE;
                 condition = "Lose";
+                compWon++;
             }
             else
             {
-                gameConditions = Conditions.WIN;
                 condition = "Win";
+                playerWon++;
             }
         }
         else
         {
             if (compWeapon == Weapons.ROCK)
             {
-                gameConditions = Conditions.LOSE;
                 condition = "Lose";
+                compWon++;
             }
             else
             {
-                gameConditions = Conditions.WIN;
                 condition = "Win";
+                playerWon++;
             }
         }
     }
@@ -108,15 +99,28 @@ public class GameplayBehaviour : MonoBehaviour
     //Update and Render Game Over UI Method
     private void updateCanvas()
     {
-        Text newText = gameOverScreen.GetComponentInChildren<Text>();
-        newText.text = "You Chose " + playerPick + ',' + '\n' + "Evil Chose " + compPick + ',' + '\n' + "You " + condition;
-        gameOverScreen.SetActive(true);
+        if (playerWon >= 2 || compWon >= 2)
+        {
+            Text newText = gameOverScreen.GetComponentInChildren<Text>();
+            newText.text = "You Chose " + playerPick + ',' + '\n' + "Evil Chose " + compPick + ',' + '\n' + "You " + condition + " " + playerWon + " to " + compWon;
+            gameOverScreen.SetActive(true);
+            if (playerWon >= 2)
+                Main.Instance.newUser.updateRecord("Win");
+            else
+                Main.Instance.newUser.updateRecord("Loss");
+        }
+        else
+        {
+            Text newText = nextRoundScreen.GetComponentInChildren<Text>();
+            newText.text = "You Chose " + playerPick + ',' + '\n' + "Evil Chose " + compPick + ',' + '\n' + "You " + condition;
+            nextRoundScreen.SetActive(true);
+            userWeapon = compWeapon = Weapons.EMPTY;
+        }
     }
-
     //Gameplay Loop Method
     public void gameplay()
     {
-        computerWeapon();
+        StartCoroutine(computerWeapon());
         compareWeapons();
         updateCanvas();
     }
