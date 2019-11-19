@@ -7094,7 +7094,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2007366575}
-        m_MethodName: LoginCanvas
+        m_MethodName: ClickPlay
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

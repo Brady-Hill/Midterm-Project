@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEngine.Networking;
 using UnityEngine.SceneManagement;
@@ -10,7 +11,6 @@ public class Web : MonoBehaviour
     string LoginURL = "http://poxdb.000webhostapp.com/Login.php";
     string RegisterURL = "http://poxdb.000webhostapp.com/Register.php";
     string UpdateURL = "http://poxdb.000webhostapp.com/UpdateRecord.php";
-
 
     public IEnumerator Login(string username, string password)
     {
@@ -36,7 +36,12 @@ public class Web : MonoBehaviour
                 {
                     Main.Instance.newUser.setUser(username, password);
                     Main.Instance.newUser.setRecord(www.downloadHandler.text);
-                    goToMenu();
+                    using (StreamWriter login = new StreamWriter("lgncred.txt"))
+                    {
+                        login.WriteLine(username);
+                        login.WriteLine(password);
+                    }
+                        goToMenu();
                 }
             }
         }
@@ -65,6 +70,11 @@ public class Web : MonoBehaviour
                 else
                 {
                     Main.Instance.newUser.setNewUser(username, password);
+                    using (StreamWriter login = new StreamWriter("lgncred.txt"))
+                    {
+                        login.WriteLine(username);
+                        login.WriteLine(password);
+                    }
                     goToMenu();
                 }
             }
