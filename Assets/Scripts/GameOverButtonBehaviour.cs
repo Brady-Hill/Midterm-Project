@@ -11,6 +11,9 @@ public class GameOverButtonBehaviour : MonoBehaviour
     public void goToGame()
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("AIGameScene");
-
+    }
+    public void goToLocalGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LocalGameScene");
     }
 }

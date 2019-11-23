@@ -9,7 +9,7 @@ public class GameplayBehaviour : MonoBehaviour
     private GameObject gameOverScreen, nextRoundScreen;
 
     //Weapon Choices like Paper Rock and Scissors
-    private enum Weapons
+    public enum Weapons
     {
         PAPER,
         ROCK,

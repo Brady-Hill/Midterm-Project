@@ -9,4 +9,8 @@ public class MainMenuButtonBehaviour : MonoBehaviour
     {
         UnityEngine.SceneManagement.SceneManager.LoadScene("AIGameScene");
     }
+    public void goToLocalGame()
+    {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("LocalGameScene");
+    }
 }
