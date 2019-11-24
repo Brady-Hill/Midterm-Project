@@ -120,3 +120,6 @@ crashlytics-build.properties
 /Assets/Sprites/*.meta
 /Assets/Scripts/*.meta
 /lgncred.txt
+/Assets/Sounds/*.wav
+/Assets/Sounds/*.meta
+/Assets/Prefabs

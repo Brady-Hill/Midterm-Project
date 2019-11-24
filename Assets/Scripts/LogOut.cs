@@ -8,6 +8,7 @@ public class LogOut : MonoBehaviour
     public GameObject canvas;
     public void ClickLogOut()
     {
+        AudioManager.instance.Play("Button");
         canvas.SetActive(true);
     }
 }

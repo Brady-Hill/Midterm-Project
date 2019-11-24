@@ -15,6 +15,8 @@ public class LocalGameplayBehaviour : MonoBehaviour
     private void Awake()
     {
         picks = new List<GameplayBehaviour.Weapons>();
+        AudioManager.instance.Stop("Theme");
+        AudioManager.instance.Play("Gameplay");
     }
     public void Update()
     {
@@ -132,6 +134,7 @@ public class LocalGameplayBehaviour : MonoBehaviour
     }
     private void updateCanvas()
     {
+        AudioManager.instance.Play("Death");
         gameplayCanvas.SetActive(false);
         if (user1wins >= 2 || user2wins >= 2)
         {
@@ -145,6 +148,7 @@ public class LocalGameplayBehaviour : MonoBehaviour
         }
         else
         {
+            AudioManager.instance.Play("Death");
             Text newText = nextRoundScreen.GetComponentInChildren<Text>();
             newText.text = "Player 1 Chose " + user1Choice() + ',' + '\n' + "Player 2 Chose " + user2Choice() + ',' + '\n' + winner();
             nextRoundScreen.SetActive(true);
@@ -158,6 +162,7 @@ public class LocalGameplayBehaviour : MonoBehaviour
     }
     public void nextRound()
     {
+        AudioManager.instance.Play("Button");
         nextRoundScreen.SetActive(false);
         gameplayCanvas.SetActive(true);
     }

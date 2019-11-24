@@ -6,6 +6,8 @@ public class GameOverButtonBehaviour : MonoBehaviour
 {
     public void goToTitle()
     {
+        AudioManager.instance.Stop("Gameplay");
+        AudioManager.instance.Play("Theme");
         UnityEngine.SceneManagement.SceneManager.LoadScene("TitleScreen");
     }
     public void goToGame()

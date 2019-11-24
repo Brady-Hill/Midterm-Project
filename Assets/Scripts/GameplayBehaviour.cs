@@ -31,6 +31,8 @@ public class GameplayBehaviour : MonoBehaviour
     private void Awake()
     {
         picks = new List<Weapons>();
+        AudioManager.instance.Stop("Theme");
+        AudioManager.instance.Play("Gameplay");
     }
     //Methods for each weapon choice
     public void paper() { picks.Add(Weapons.PAPER); playerPick = "Paper"; }
@@ -115,6 +117,7 @@ public class GameplayBehaviour : MonoBehaviour
     //Update and Render Game Over UI Method
     private void updateCanvas()
     {
+        AudioManager.instance.Play("Death");
         gameplayCanvas.SetActive(false);
         if (playerWon >= 2 || compWon >= 2)
         {
@@ -134,6 +137,7 @@ public class GameplayBehaviour : MonoBehaviour
         }
         else
         {
+            AudioManager.instance.Play("Death");
             Text newText = nextRoundScreen.GetComponentInChildren<Text>();
             newText.text = "You Chose " + playerPick + ',' + '\n' + "Evil Chose " + compPick + ',' + '\n' + "You " + condition;
             nextRoundScreen.SetActive(true);
@@ -142,6 +146,7 @@ public class GameplayBehaviour : MonoBehaviour
     }
     public void nextRound()
     {
+        AudioManager.instance.Play("Button");
         nextRoundScreen.SetActive(false);
         gameplayCanvas.SetActive(true);
     }

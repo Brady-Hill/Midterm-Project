@@ -14,6 +14,7 @@ public class Register : MonoBehaviour
     {
         RegButton.onClick.AddListener(() =>
         {
+            AudioManager.instance.Play("Button");
             StartCoroutine(Main.Instance.web.Register(RegUser.text, RegPass.text));
         });
     }

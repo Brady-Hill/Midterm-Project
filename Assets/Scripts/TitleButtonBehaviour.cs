@@ -10,6 +10,7 @@ public class TitleButtonBehaviour : MonoBehaviour
     public GameObject canvas;
     public void ClickPlay()
     {
+        AudioManager.instance.Play("Button");
         string file = "lgncred.txt";
         if (File.Exists(file))
         {
@@ -30,5 +31,4 @@ public class TitleButtonBehaviour : MonoBehaviour
             canvas.SetActive(true);
         }
     }
-   
 }

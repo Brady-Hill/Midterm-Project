@@ -14,8 +14,8 @@ public class Login : MonoBehaviour
     {
         LoginButton.onClick.AddListener(() =>
         {
-           StartCoroutine(Main.Instance.web.Login(LoginUser.text, LoginPass.text));
-
+            AudioManager.instance.Play("Button");
+            StartCoroutine(Main.Instance.web.Login(LoginUser.text, LoginPass.text));
         });
     }
 }
