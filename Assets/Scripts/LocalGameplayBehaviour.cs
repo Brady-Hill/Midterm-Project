@@ -8,10 +8,14 @@ public class LocalGameplayBehaviour : MonoBehaviour
     [SerializeField]
     private GameObject gameplayCanvas, gameOverScreen, nextRoundScreen;
 
-    private List<GameplayBehaviour.Weapons> picks = new List<GameplayBehaviour.Weapons>();
+    private List<GameplayBehaviour.Weapons> picks;
     GameplayBehaviour.Weapons pick1, pick2;
     string condition, user1pick, user2pick;
     int user1wins = 0, user2wins = 0;
+    private void Awake()
+    {
+        picks = new List<GameplayBehaviour.Weapons>();
+    }
     public void Update()
     {
         if (picks.Count == 2)

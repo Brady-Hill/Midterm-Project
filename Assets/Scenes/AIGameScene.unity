@@ -297,6 +297,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameOverScreen: {fileID: 1858609708}
   nextRoundScreen: {fileID: 1922111465}
+  gameplayCanvas: {fileID: 1824177519}
 --- !u!4 &231912846
 Transform:
   m_ObjectHideFlags: 0
@@ -400,7 +401,6 @@ GameObject:
   - component: {fileID: 369711245}
   - component: {fileID: 369711247}
   - component: {fileID: 369711243}
-  - component: {fileID: 369711246}
   m_Layer: 5
   m_Name: Paper
   m_TagString: Untagged
@@ -470,8 +470,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 369711246}
-        m_MethodName: paperChoice
+      - m_Target: {fileID: 231912845}
+        m_MethodName: paper
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -489,20 +489,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 369711241}
   m_CullTransparentMesh: 0
---- !u!114 &369711246
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 369711241}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a8109e4c266554abc64b1341fd1a4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameCanvas: {fileID: 1824177519}
-  nextRoundCanvas: {fileID: 1922111465}
 --- !u!114 &369711247
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4067,7 +4053,6 @@ GameObject:
   - component: {fileID: 1125532127}
   - component: {fileID: 1125532126}
   - component: {fileID: 1125532125}
-  - component: {fileID: 1125532128}
   m_Layer: 5
   m_Name: NextRoundButton
   m_TagString: Untagged
@@ -4138,8 +4123,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1125532128}
-        m_MethodName: resetScreen
+      - m_Target: {fileID: 231912845}
+        m_MethodName: nextRound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4185,20 +4170,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125532123}
   m_CullTransparentMesh: 0
---- !u!114 &1125532128
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1125532123}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a8109e4c266554abc64b1341fd1a4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameCanvas: {fileID: 1824177519}
-  nextRoundCanvas: {fileID: 1922111465}
 --- !u!1 &1254925079
 GameObject:
   m_ObjectHideFlags: 0
@@ -4211,7 +4182,6 @@ GameObject:
   - component: {fileID: 1254925083}
   - component: {fileID: 1254925082}
   - component: {fileID: 1254925081}
-  - component: {fileID: 1254925084}
   m_Layer: 5
   m_Name: Scissors
   m_TagString: Untagged
@@ -4281,8 +4251,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1254925084}
-        m_MethodName: scissorChoice
+      - m_Target: {fileID: 231912845}
+        m_MethodName: scissors
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4329,20 +4299,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1254925079}
   m_CullTransparentMesh: 0
---- !u!114 &1254925084
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1254925079}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a8109e4c266554abc64b1341fd1a4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameCanvas: {fileID: 1824177519}
-  nextRoundCanvas: {fileID: 1922111465}
 --- !u!1 &1259942455
 GameObject:
   m_ObjectHideFlags: 0
@@ -5536,7 +5492,7 @@ GameObject:
   - component: {fileID: 1824177520}
   m_Layer: 5
   m_Name: GameplayCanvas
-  m_TagString: Untagged
+  m_TagString: GameplayCanvas
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5637,7 +5593,7 @@ GameObject:
   - component: {fileID: 1858609709}
   m_Layer: 5
   m_Name: GameOverCanvas
-  m_TagString: Untagged
+  m_TagString: GameOverScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5819,7 +5775,7 @@ GameObject:
   - component: {fileID: 1922111466}
   m_Layer: 5
   m_Name: NextRound
-  m_TagString: Untagged
+  m_TagString: NextRoundScreen
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5998,7 +5954,6 @@ GameObject:
   - component: {fileID: 1957904219}
   - component: {fileID: 1957904218}
   - component: {fileID: 1957904217}
-  - component: {fileID: 1957904220}
   m_Layer: 5
   m_Name: Rock
   m_TagString: Untagged
@@ -6068,8 +6023,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1957904220}
-        m_MethodName: rockChoice
+      - m_Target: {fileID: 231912845}
+        m_MethodName: rock
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6116,17 +6071,3 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1957904215}
   m_CullTransparentMesh: 0
---- !u!114 &1957904220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1957904215}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 38a8109e4c266554abc64b1341fd1a4a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameCanvas: {fileID: 1824177519}
-  nextRoundCanvas: {fileID: 1922111465}

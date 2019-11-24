@@ -5,20 +5,19 @@ using UnityEngine.UI;
 
 public class GameplayBehaviour : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject gameOverScreen, nextRoundScreen;
+    public GameObject gameOverScreen, nextRoundScreen, gameplayCanvas;
 
     //Weapon Choices like Paper Rock and Scissors
     public enum Weapons
     {
         PAPER,
         ROCK,
-        SCISSORS,
-        EMPTY
+        SCISSORS
     }
 
     //Variables to store the Player and AI Choice
-    private Weapons userWeapon, compWeapon;
+    private List<Weapons> picks;
+    Weapons userWeapon, compWeapon;
 
     //Strings for conditions, choices and for the UI to display
     private string playerPick, compPick, condition;
@@ -29,12 +28,22 @@ public class GameplayBehaviour : MonoBehaviour
     private int userWins = 0;
     private int userLosses = 0;
 
-
+    private void Awake()
+    {
+        picks = new List<Weapons>();
+    }
     //Methods for each weapon choice
-    public void paper() { userWeapon = Weapons.PAPER; playerPick = "Paper"; }
-    public void rock() { userWeapon = Weapons.ROCK; playerPick = "Rock"; }
-    public void scissors() { userWeapon = Weapons.SCISSORS; playerPick = "Scissors"; }
+    public void paper() { picks.Add(Weapons.PAPER); playerPick = "Paper"; }
+    public void rock() { picks.Add(Weapons.ROCK); playerPick = "Rock"; }
+    public void scissors() { picks.Add(Weapons.SCISSORS); playerPick = "Scissors"; }
 
+    private void Update()
+    {
+        if (picks.Count == 1)
+        {
+            gameplay();
+        }
+    }
     //Method for Computer Weapon Selection
     IEnumerator computerWeapon()
     {
@@ -42,13 +51,13 @@ public class GameplayBehaviour : MonoBehaviour
         switch (temp)
         {
             case 0:
-                compWeapon = Weapons.PAPER; compPick = "Paper";
+                picks.Add(Weapons.PAPER); compPick = "Paper";
                 break;
             case 1:
-                compWeapon = Weapons.ROCK; compPick = "Rock";
+                picks.Add(Weapons.ROCK); compPick = "Rock";
                 break;
             case 2:
-                compWeapon = Weapons.SCISSORS; compPick = "Scissors";
+                picks.Add(Weapons.SCISSORS); compPick = "Scissors";
                 break;
         }
         yield return new WaitForSeconds(1.5f);
@@ -57,6 +66,7 @@ public class GameplayBehaviour : MonoBehaviour
     //Method to compare the User selection with the Computer selection and determine the game outcome
     private void compareWeapons()
     {
+        userWeapon = picks[0]; compWeapon = picks[1];
         if (userWeapon == compWeapon)
         {
             condition = "Tie";
@@ -87,7 +97,7 @@ public class GameplayBehaviour : MonoBehaviour
                 playerWon++;
             }
         }
-        else
+        else if (userWeapon == Weapons.SCISSORS)
         {
             if (compWeapon == Weapons.ROCK)
             {
@@ -105,11 +115,13 @@ public class GameplayBehaviour : MonoBehaviour
     //Update and Render Game Over UI Method
     private void updateCanvas()
     {
+        gameplayCanvas.SetActive(false);
         if (playerWon >= 2 || compWon >= 2)
         {
             Text newText = gameOverScreen.GetComponentInChildren<Text>();
             newText.text = "You Chose " + playerPick + ',' + '\n' + "Evil Chose " + compPick + ',' + '\n' + "You " + condition + " " + playerWon + " to " + compWon;
             gameOverScreen.SetActive(true);
+            picks.Clear();
             if (playerWon >= 2)
             {
                 userWins++;
@@ -125,8 +137,13 @@ public class GameplayBehaviour : MonoBehaviour
             Text newText = nextRoundScreen.GetComponentInChildren<Text>();
             newText.text = "You Chose " + playerPick + ',' + '\n' + "Evil Chose " + compPick + ',' + '\n' + "You " + condition;
             nextRoundScreen.SetActive(true);
-            userWeapon = compWeapon = Weapons.EMPTY;
+            picks.Clear();
         }
+    }
+    public void nextRound()
+    {
+        nextRoundScreen.SetActive(false);
+        gameplayCanvas.SetActive(true);
     }
     //Gameplay Loop Method
     public void gameplay()
